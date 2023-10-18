@@ -1,10 +1,12 @@
 import react, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 let globalId = 0;
 
 function Todo() {
   const [task, setTask] = useState("");
   const [todos, setTodos] = useState([]);
+  const { username } = useParams();
 
   function createTodo(event) {
     event.preventDefault();
@@ -20,8 +22,8 @@ function Todo() {
 
   return (
     <div>
-      <h1>To-do</h1>
-      <p>Add your To-dos</p>
+      <h1>To-dos for {username}</h1>
+      <p>Add new To-dos</p>
       <form onSubmit={createTodo}>
         <input
           type="text"

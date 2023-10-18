@@ -9,7 +9,7 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/todo">To-do</Link>
+              <Link to="/todo/Paras">To-do</Link>
             </li>
             <li>
               <Link to="/">Home</Link>
@@ -17,7 +17,7 @@ function App() {
           </ul>
         </nav>
         <Routes>
-          <Route path="/todo" element={<Todo />} />
+          <Route path="/todo/:username" element={<Todo />} />
           <Route path="/" element={<h1>Home Page</h1>} />
         </Routes>
       </div>
