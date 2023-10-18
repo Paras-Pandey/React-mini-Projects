@@ -1,5 +1,7 @@
 import react, { useState, useEffect } from "react";
 
+let globalId = 0;
+
 function Todo() {
   const [task, setTask] = useState("");
   const [todos, setTodos] = useState([]);
@@ -8,8 +10,12 @@ function Todo() {
     event.preventDefault();
     setTodos((oldTodos) => {
       setTask("");
-      return [...oldTodos, task];
+      return [...oldTodos, { todo: task, id: globalId++ }];
     });
+  }
+
+  function deleteTodo(idToDelete) {
+    setTodos((oldTodos) => oldTodos.filter((todo) => todo.id !== idToDelete));
   }
 
   return (
@@ -27,8 +33,13 @@ function Todo() {
         <button type="submit">Create To-do</button>
       </form>
       <ul>
-        {todos.map((todo) => {
-          return <li key={todo}>{todo}</li>;
+        {todos.map((item) => {
+          return (
+            <div key={item.id}>
+              <li>{item.todo}</li>
+              <button onClick={() => deleteTodo(item.id)}>Delete</button>
+            </div>
+          );
         })}
       </ul>
     </div>
