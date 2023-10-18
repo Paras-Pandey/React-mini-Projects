@@ -1,11 +1,31 @@
 import "./App.css";
 import Todo from "./To-do/toDo";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { useQuery } from "react-query";
+import { useState } from "react";
+
+function Button() {
+  const { data, error } = useQuery("first-query", () => {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(Math.random()), 2000);
+    });
+  });
+
+  return <button>{data}</button>;
+}
 
 function App() {
+  const [visibility, setVisibility] = useState(true);
+
+  function toggleVisibility() {
+    setVisibility((oldVisibility) => !oldVisibility);
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
+        {visibility && <Button />}
+        <button onClick={toggleVisibility}>Toggle Visibility</button>
         <nav>
           <ul>
             <li>
