@@ -1,44 +1,17 @@
 import "./App.css";
 import Todo from "./To-do/toDo";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { useQuery } from "react-query";
-import { useState } from "react";
 import FetchGithubRepoDetails from "./fetchGithubRepoDetails/fetchGithubRepoDetails";
 import GetBlogDetails from "./getBlogDetails/getBlogDetails";
 import Stopwatch from "./stopwatch/stopwatch";
 import IncrementCounter from "./incrementCounter/incrementCounter";
+import ParentComponent from "./setDarkOrLightTheme/parentComponent";
+import ToggleButton from "./toggleButton/toggleButton";
 
 function App() {
-  function Button() {
-    const { data, error } = useQuery(
-      "first-query",
-      () => {
-        return new Promise((resolve) => {
-          setTimeout(() => resolve(Math.random()), 2000);
-        });
-      },
-      { enabled: status },
-    );
-
-    return <button>{data}</button>;
-  }
-  const [visibility, setVisibility] = useState(true);
-  const [status, setStatus] = useState(false);
-
-  function toggleVisibility() {
-    setVisibility((oldVisibility) => !oldVisibility);
-  }
-
-  function toggleStatus() {
-    setStatus((oldStatus) => !oldStatus);
-  }
-
   return (
     <BrowserRouter>
       <div className="App">
-        {visibility && <Button />}
-        <button onClick={toggleVisibility}>Toggle Visibility</button>
-        <button onClick={toggleStatus}>Toggle Status</button>
         <nav>
           <ul>
             <li>
@@ -61,6 +34,12 @@ function App() {
             <li>
               <Link to="/incrementCounter">Increment Counter</Link>
             </li>
+            <li>
+              <Link to="/setDarkOrLightTheme">Set Dark Or Light Theme</Link>
+            </li>
+            <li>
+              <Link to="/toggleButton">Toggle Button</Link>
+            </li>
           </ul>
         </nav>
         <Routes>
@@ -73,6 +52,8 @@ function App() {
           <Route path="/getBlogDetails" element={<GetBlogDetails />} />
           <Route path="/stopwatch" element={<Stopwatch />} />
           <Route path="/incrementCounter" element={<IncrementCounter />} />
+          <Route path="/setDarkOrLightTheme" element={<ParentComponent />} />
+          <Route path="/toggleButton" element={<ToggleButton />} />
         </Routes>
       </div>
     </BrowserRouter>
