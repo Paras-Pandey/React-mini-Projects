@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import { useState } from "react";
 import FetchGithubRepoDetails from "./fetchGithubRepoDetails/fetchGithubRepoDetails";
 import GetBlogDetails from "./getBlogDetails/getBlogDetails";
+import Stopwatch from "./stopwatch/stopwatch";
 
 function App() {
   function Button() {
@@ -53,6 +54,9 @@ function App() {
             <li>
               <Link to="/getBlogDetails">Get Blog Details</Link>
             </li>
+            <li>
+              <Link to="/stopwatch">Stopwatch</Link>
+            </li>
           </ul>
         </nav>
         <Routes>
@@ -63,6 +67,7 @@ function App() {
             element={<FetchGithubRepoDetails />}
           />
           <Route path="/getBlogDetails" element={<GetBlogDetails />} />
+          <Route path="/stopwatch" element={<Stopwatch />} />
         </Routes>
       </div>
     </BrowserRouter>
