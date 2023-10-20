@@ -6,6 +6,7 @@ import { useState } from "react";
 import FetchGithubRepoDetails from "./fetchGithubRepoDetails/fetchGithubRepoDetails";
 import GetBlogDetails from "./getBlogDetails/getBlogDetails";
 import Stopwatch from "./stopwatch/stopwatch";
+import IncrementCounter from "./incrementCounter/incrementCounter";
 
 function App() {
   function Button() {
@@ -57,6 +58,9 @@ function App() {
             <li>
               <Link to="/stopwatch">Stopwatch</Link>
             </li>
+            <li>
+              <Link to="/incrementCounter">Increment Counter</Link>
+            </li>
           </ul>
         </nav>
         <Routes>
@@ -68,6 +72,7 @@ function App() {
           />
           <Route path="/getBlogDetails" element={<GetBlogDetails />} />
           <Route path="/stopwatch" element={<Stopwatch />} />
+          <Route path="/incrementCounter" element={<IncrementCounter />} />
         </Routes>
       </div>
     </BrowserRouter>
